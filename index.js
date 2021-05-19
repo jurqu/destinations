@@ -1,11 +1,11 @@
 //import the db database
-let { destinations } = require("./db.js");
+const { generateUID } = require("./services");
+let { destinations } = require("./db");
 
 //import (require) express function
 const express = require("express");
+const PORT = process.env.PORT || 3000;
 const app = express();
-const PORT = 3000;
-let generateUID = require("./services");
 app.use(express.json()); // for parsing application/json
 
 //call the express function to create out HTTP server
@@ -37,16 +37,16 @@ app.post("/destinations", (req, res) => {
 
   //add the user data in my db
   destinations.push({
-    id: generateUID,
+    id: generateUID(),
     name: name,
     location: location,
-    photo: photo ? photo : "",
+    photo: photo !== undefined ? photo : "",
   });
-  console.log(req.body);
+  //console.log(req.body);
   res.send({ status: "success" });
 });
 
-app.delete("/destination/:uid", (req, res) => {
+app.delete("/destinations/:uid", (req, res) => {
   // console.log(req.params.uid);
   let { uid: id } = req.params;
 
@@ -56,5 +56,6 @@ app.delete("/destination/:uid", (req, res) => {
     }
   });
   destinations = filtered;
+  console.log(destinations);
   res.send({ status: "success" });
 });

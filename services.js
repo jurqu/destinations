@@ -1,5 +1,3 @@
-const { UIDs } = require("./db");
-
 function generateUID() {
   let uid = "";
   //generate a 10 digit id that is unique
@@ -10,14 +8,14 @@ function generateUID() {
   return uid;
 }
 
-function validateUID() {
-  let id = generateUID();
+// function validateUID() {
+//   let id = generateUID();
 
-  while (UIDs[id]) {
-    id = generateUID;
-  }
-  UIDS[id] = true;
+//   while (UIDs[id]) {
+//     id = generateUID;
+//   }
+//   UIDS[id] = true;
 
-  return id;
-}
-exports.generateUID = validateUID;
+//   return id;
+// }
+exports.generateUID = generateUID;
