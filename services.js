@@ -7,15 +7,4 @@ function generateUID() {
   }
   return uid;
 }
-
-// function validateUID() {
-//   let id = generateUID();
-
-//   while (UIDs[id]) {
-//     id = generateUID;
-//   }
-//   UIDS[id] = true;
-
-//   return id;
-// }
 exports.generateUID = generateUID;
